@@ -1,0 +1,51 @@
+{% extends 'pages/index.html' %}
+{% load static %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block content %}
+    <h2>Invoice</h2>
+    <form id="InvoiceForm" method="post">
+    {% csrf_token %}
+        <label for="item">Item:</label>
+        {{ form.item }}
+        <label for="quantity">Quantity:</label>
+        {{ form.quantity }}
+        <label for="price">Unit Price:</label>
+        {{ form.unitprice }}
+        <button type="submit" onclick="addDeliveryItem()" >Add Item</button>
+    </form>
+    <table id="invoiceTable">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Unit Price</th>
+                <th>Total</th>
+                <th>Action</th>
+                <th></th>
+            </tr>
+        </thead>
+        {% for Invoice in Invoices %}
+        <tr>
+        <tbody id="invoiceBody">
+        <td>{{ Invoice.item }}</td>
+        <td>{{ Invoice.quantity }}</td>
+        <td>{{ Invoice.unitprice }}</td>
+        <td>{{ Invoice.total }}</td>
+        <td>
+            <a type="button" class="btn btn-warning" href="/invoice-update/{{ Invoice.id }}">Update</a>
+            <a type="button" class="btn btn-danger" href="/invoice-delete/{{ Invoice.id }}">Delete</a>
+        </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <p id="total">Total: ₱{{ totalovr }}</p>
+   
+    <script src="{% static 'js/invoice.js' %}"></script>
+
+    {% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'pages/home.html' %}
+{% csrf_token %}
+{% load static %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/delivery.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<h2>Inventory </h2>
+
+<table id="inventoryTable">
+    <thead>
+        <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Unit Price</th>
+            <th>Total</th>
+            <th></th>
+        </tr>
+    </thead>
+    {% for Invoice in Inventory %}
+    <tbody id="invoiceBody">
+
+        <tr>
+        <td>{{ Invoice.item }}</td>
+        <td>{{ Invoice.quantity }}</td>
+        <td>{{ Invoice.unitprice }}</td>
+        <td>{{ Invoice.total }}</td>
+        </tr>
+    </tbody>
+{% endfor %}
+</table>
+
+
+   
+    <script src="{% static 'js/inventory.js' %}"></script>
+
+    {% endblock %}

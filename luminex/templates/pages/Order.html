@@ -1,0 +1,32 @@
+{% extends 'pages/home.html' %}
+{% load static %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/order.css' %}">
+{% endblock %}
+
+{% block content %}
+<h2>Order Status</h2>
+
+    <table id="orderStatusTable">
+   <thead>
+        <tr>
+            <th>Item</th>
+            <th>Address</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    {% for Delivery in Order %}
+    <tbody id="orderBody">
+        <tr>
+        <td>{{ Delivery.item }}</td>
+        <td>{{ Delivery.address }}</td>
+        <td>{{ Delivery.status }}</td>
+        </tr>
+    </tbody>
+{% endfor %}
+</table>
+    <script src="{% static 'js/order.js' %}"></script>
+
+    {% endblock %}

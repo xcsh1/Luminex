@@ -1,0 +1,43 @@
+body {
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 21px;
+}
+
+.background-image {
+  background: center center no-repeat;
+  background-size: contain;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.bgm
+{
+  background: center center no-repeat;
+  background-size: contain;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.content {
+  position: absolute;
+  top: 35%; 
+  left: 50%;
+  transform: translate(-50%, 0);
+  text-align: center;
+  color: #000000;
+}
+
+.content h1 {
+  margin: 0;
+}
+
+.content p {
+  margin: 10px 0;
+}

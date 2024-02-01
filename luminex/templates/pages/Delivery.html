@@ -1,0 +1,54 @@
+{% extends 'pages/index.html' %}
+{% load static %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block content %}
+<h2>Delivery Status</h2>
+<form id="deliveryForm" method="post">
+{% csrf_token %}
+    <label for="item">Item:</label>
+    {{ form.item }}
+    <label for="quantity">Quantity:</label>
+    {{ form.quantity }}
+    <label for="price">Unit Price:</label>
+    {{ form.unitprice }}
+    <label for="price">Address:</label>
+    {{ form.address }}
+    <label for="status">Delivery Status:</label>
+    {{ form.status }}
+    <button type="submit" onclick="addDeliveryItem()">Add Item</button>
+</form>
+<table class="table" style="page-break-inside: auto">
+    <thead>
+        <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Unit Price</th>
+            <th>Address</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for Delivery in Deliverys %}
+    <tr>
+        <td>{{ Delivery.item }}</td>
+        <td>{{ Delivery.quantity }}</td>
+        <td>{{ Delivery.unitprice }}</td>
+        <td>{{ Delivery.address }}</td>
+        <td>{{ Delivery.status }}</td>
+        <td><a type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" href="/delivery-update/{{ Delivery.id }}">Update</a>
+            <a type="button" class="btn btn-danger" href="/delivery-delete/{{ Delivery.id }}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<p id="total">Total: ₱{{ totalprice }}</p>
+<button onclick="openOrderStatus()">Check Order Status</button>
+    {% endblock %}
+    
